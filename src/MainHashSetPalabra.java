@@ -1,13 +1,46 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-  //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-  // to see how IntelliJ IDEA suggests fixing it.
-  IO.println(String.format("Hello and welcome!"));
+/*
+4. Escribe un programa que lea una lista de palabras y muestre solo las palabras
+únicas (ignorando las repetidas) usando un HashSet. (MainHashSetPalabra
+ */
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 
-  for (int i = 1; i <= 5; i++) {
-    //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-    // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-    IO.println("i = " + i);
-  }
+public class MainHashSetPalabra {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Set<String> lista = new HashSet<>();
+        Set<String> repetidas = new HashSet<>();
+
+        System.out.println("Introduce palabras (escribe 'fin' para terminar):");
+
+        while (sc.hasNext()) {
+            String entrada = sc.next().toLowerCase();
+
+            if (entrada.equalsIgnoreCase("fin")) {
+                break;
+            }
+
+            if (!lista.add(entrada)) {
+                repetidas.add(entrada);
+            }
+        }
+
+        lista.removeAll(repetidas);
+
+        System.out.println("Palabras que aparecieron una sola vez:");
+        if (lista.isEmpty()) {
+
+            System.out.println("No hay palabras que solo salgan una vez.");
+
+        } else {
+            for (String palabra : lista) {
+                System.out.println(palabra);
+            }
+        }
+
+        sc.close();
+    }
 }
+
